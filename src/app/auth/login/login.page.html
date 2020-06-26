@@ -1,0 +1,39 @@
+<ion-content>
+  <div class="bottom">
+    <h1 class="login">
+      <ng-container *ngIf="data && data.userNameVerified; else nonVerified">
+        <span>Welcome {{data.userName}} <sup>
+            <ion-icon (click)="data.userNameVerified= false" name="close-circle-outline"></ion-icon>
+          </sup></span> </ng-container>
+      <ng-template #nonVerified>
+        Login
+      </ng-template>
+    </h1>
+    <ion-item *ngIf="data && !data.userNameVerified">
+      <ion-label position="floating">User Name</ion-label>
+      <ion-input [(ngModel)]="data.userName"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="data && data.userNameVerified">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="data.password"></ion-input>
+    </ion-item>
+    <ion-button class="mt-10" expand="full" fill="outline" shape="round" (click)="verify()">
+      <ion-icon name="arrow-forward-outline" *ngIf="!loading"></ion-icon>
+      <ion-spinner name="lines" *ngIf="loading"></ion-spinner>
+    </ion-button>
+    <div class="social-login">
+      <div class="line">
+        <hr>
+        <h2>Login Using</h2>
+      </div>
+      <div class="social-btn">
+        <ion-fab-button size="small">
+          <ion-icon icon="./assets/icon/google.svg"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button size="small">
+          <ion-icon icon="./assets/icon/facebook.svg"></ion-icon>
+        </ion-fab-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
